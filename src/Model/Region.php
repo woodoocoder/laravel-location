@@ -24,6 +24,6 @@ class Region extends Model {
     ];
     
     public function country() {
-        return $this->hasOne(Country::class);
+        return $this->belongsTo(Country::class);
     }
 }

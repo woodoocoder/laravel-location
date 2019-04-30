@@ -31,7 +31,7 @@ class LocationController extends Controller {
         return CountryResource::collection($items);
     }
 
-    public function regions(Request $request) {
+    public function regions(Request $request, int $countryId=null) {
         $q = $request->get('q');
         $model = Region::query();
 
@@ -40,13 +40,17 @@ class LocationController extends Controller {
             $model->orWhere('en_name', 'LIKE', '%'.$q.'%');
         }
 
+        if($countryId) {
+            $model->where('country_id', $countryId);
+        }
+
         $model->orderBy('id', 'asc');
         $items = $model->paginate(20)->appends($request->query());
 
         return RegionResource::collection($items);
     }
 
-    public function cities(Request $request) {
+    public function cities(Request $request, int $countryId=null, int $regionId=null) {
         $q = $request->get('q');
         $model = City::query();
 
@@ -54,6 +58,15 @@ class LocationController extends Controller {
             $model->where('name', 'LIKE', '%'.$q.'%');
             $model->orWhere('en_name', 'LIKE', '%'.$q.'%');
         }
+
+        if($countryId) {
+            $model->where('country_id', $countryId);
+        }
+
+        if($regionId) {
+            $model->where('region_id', $regionId);
+        }
+
 
         $model->orderBy('id', 'asc');
         $items = $model->paginate(20)->appends($request->query());
