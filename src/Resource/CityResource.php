@@ -2,9 +2,10 @@
 
 namespace Woodoocoder\LaravelLocation\Resource;
 
-
 use Illuminate\Http\Resources\Json\JsonResource;
 
+use Woodoocoder\LaravelLocation\Resource\Short\CountryResource;
+use Woodoocoder\LaravelLocation\Resource\Short\RegionResource;
 
 class CityResource extends JsonResource {
 

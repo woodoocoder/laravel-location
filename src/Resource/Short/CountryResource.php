@@ -1,12 +1,12 @@
 <?php
 
-namespace Woodoocoder\LaravelLocation\Resource;
+namespace Woodoocoder\LaravelLocation\Resource\Short;
+
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-use Woodoocoder\LaravelLocation\Resource\Short\CountryResource;
 
-class RegionResource extends JsonResource {
+class CountryResource extends JsonResource {
 
     /**
      * Transform the resource into an array.
@@ -17,7 +17,6 @@ class RegionResource extends JsonResource {
     public function toArray($request) {
         return [
             'id' => $this->id,
-            'country' => new CountryResource($this->country),
             'name' => $this->name,
             'en_name' => $this->en_name,
         ];
