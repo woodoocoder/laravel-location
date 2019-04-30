@@ -41,7 +41,7 @@ class InitCommand extends Command {
         $this->info('Seeding Data ...');
         $this->call('db:seed', ["--class" => "Woodoocoder\LaravelLocation\Database\Seeds\CountiesTableSeeder"]);
         $this->call('db:seed', ["--class" => "Woodoocoder\LaravelLocation\Database\Seeds\RegionsTableSeeder"]);
-        //$this->call('db:seed', ["--class" => "Woodoocoder\LaravelLocation\Database\Seeds\CitiesTableSeeder"]);
+        $this->call('db:seed', ["--class" => "Woodoocoder\LaravelLocation\Database\Seeds\CitiesTableSeeder"]);
         
         $this->info('Done!');
     }

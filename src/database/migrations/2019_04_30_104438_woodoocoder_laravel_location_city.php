@@ -14,8 +14,8 @@ class WoodoocoderLaravelLocationCity extends Migration {
     public function up() {
         Schema::create('location_cities', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('country_id')->unsigned();
-            $table->integer('region_id')->unsigned();
+            $table->integer('country_id')->unsigned()->nullable();
+            $table->integer('region_id')->unsigned()->nullable();
             $table->string('name', 255)->nullable();
             $table->string('en_name', 255);
             $table->decimal('latitude', 10, 8)->nullable();
