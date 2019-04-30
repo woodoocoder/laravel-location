@@ -16,7 +16,6 @@ class CountiesTableSeeder extends Seeder {
     public function run() {
         $countries = json_decode(file_get_contents(__DIR__ . '/../../../data/countries.json'), true);
 
-
         foreach ($countries as $country) {
             Country::create([
                 'en_name' => $country['name'],

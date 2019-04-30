@@ -17,7 +17,6 @@ class RegionsTableSeeder extends Seeder {
     public function run() {
         $regions = json_decode(file_get_contents(__DIR__ . '/../../../data/regions.json'), true);
 
-
         foreach ($regions as $region) {
             $country = Country::where('short_code', strtoupper($region['ccode']))->first();
 
