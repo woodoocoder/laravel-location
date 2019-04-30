@@ -1,0 +1,25 @@
+{
+    "name": "woodoocoder/laravel-location",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Roman Pavlyshyn",
+            "email": "pavlyshyn.roma@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Woodoocoder\\LaravelLocation\\": "src",
+            "Woodoocoder\\LaravelLocation\\Database\\Seeds\\": "src/database/seeds/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Woodoocoder\\LaravelLocation\\LocationServiceProvider"
+            ]
+        }
+    }
+}
