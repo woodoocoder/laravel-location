@@ -15,7 +15,7 @@ class WoodoocoderLaravelLocationCity extends Migration {
         $tablePrefix = config('woodoocoder.location.table_prefix');
         
         Schema::create($tablePrefix.'cities',
-            function (Blueprint $table) {
+            function (Blueprint $table) use ($tablePrefix) {
                 $table->increments('id');
                 $table->integer('country_id')->unsigned()->nullable();
                 $table->integer('region_id')->unsigned()->nullable();
