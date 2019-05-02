@@ -20,8 +20,8 @@ class CitiesTableSeeder extends Seeder {
         
         while (($line = fgetcsv($file)) !== FALSE) {
             if($line[0] != 'city') {
-                $ccode = $line[5];
-                $region = str_replace("’", "'", $line[7]);
+                $ccode = $line[3];
+                $region = str_replace("’", "'", $line[4]);
 
                 $country = Country::where('short_code', strtoupper(trim($ccode)))->first();
 
@@ -33,9 +33,9 @@ class CitiesTableSeeder extends Seeder {
                     $data = [
                         'country_id' => $country->id,
                         'region_id' => ($reg)? $reg['id'] :null,
-                        'en_name' => $line[1],
-                        'latitude' => $line[2],
-                        'longitude' => $line[3],
+                        'en_name' => $line[0],
+                        'latitude' => $line[1],
+                        'longitude' => $line[2],
                         'approved' => true,
                     ];
 
