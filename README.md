@@ -10,7 +10,6 @@ composer require woodoocoder/laravel-location
 
 ```
 php artisan vendor:publish --tag location-config
-php artisan vendor:publish --tag location-seeds
 ```
 
 ## Initialization 
