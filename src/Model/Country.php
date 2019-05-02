@@ -10,7 +10,8 @@ class Country extends Model {
      *
      * @var string
      */
-    protected $table = 'location_countries';
+    protected $table = 'countries';
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -24,4 +25,10 @@ class Country extends Model {
         'phone_code',
         'approved'
     ];
+
+    public function __construct(array $attributes = []) {
+        $this->table = config('woodoocoder.location.table_prefix').$this->table;
+        parent::__construct($attributes);
+    }
+
 }

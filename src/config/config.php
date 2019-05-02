@@ -1,0 +1,8 @@
+<?php
+/*
+ * Set specific configuration variables here
+ */
+return [
+
+    "table_prefix" => "geo_location_"
+];

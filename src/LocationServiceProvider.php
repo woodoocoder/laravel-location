@@ -18,6 +18,7 @@ class LocationServiceProvider extends ServiceProvider {
         $this->commands([
             \Woodoocoder\LaravelLocation\Console\InitCommand::class,
         ]);
+
     }
 
     /**
@@ -26,8 +27,12 @@ class LocationServiceProvider extends ServiceProvider {
      * @return void
      */
     public function boot() {
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations/');
+        $this->mergeConfigFrom(__DIR__ .'/config/config.php', 'woodoocoder.location');
+        $this->publishes([__DIR__ .'/config/config.php' => config_path('woodoocoder/location.php')], 'location-config');
         
-        $this->publishes([__DIR__ . '/database/seeds/' => base_path('database/seeds')], 'seeds');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations/');
+        
+        $this->publishes([__DIR__ . '/database/seeds/' => base_path('database/seeds')], 'location-seeds');
+        
     }
 }

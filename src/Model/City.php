@@ -10,7 +10,7 @@ class City extends Model {
      *
      * @var string
      */
-    protected $table = 'location_cities';
+    protected $table = 'cities';
 
     /**
      * The attributes that are mass assignable.
@@ -26,6 +26,11 @@ class City extends Model {
         'longitude',
         'approved'
     ];
+    
+    public function __construct(array $attributes = []) {
+        $this->table = config('woodoocoder.location.table_prefix').$this->table;
+        parent::__construct($attributes);
+    }
     
     public function country() {
         return $this->belongsTo(Country::class);

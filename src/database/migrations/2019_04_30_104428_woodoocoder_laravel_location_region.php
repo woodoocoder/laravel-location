@@ -12,19 +12,22 @@ class WoodoocoderLaravelLocationRegion extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('location_regions', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('country_id')->unsigned();
-            $table->string('name', 255)->nullable();
-            $table->string('en_name', 255);
-            $table->boolean('approved')->default(false);
-            $table->timestamps();
-            $table->softDeletes();
+        $tablePrefix = config('woodoocoder.location.table_prefix');
+        
+        Schema::create($tablePrefix.'regions',
+            function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('country_id')->unsigned();
+                $table->string('name', 255)->nullable();
+                $table->string('en_name', 255);
+                $table->boolean('approved')->default(false);
+                $table->timestamps();
+                $table->softDeletes();
 
-            $table->foreign('country_id')->references('id')
-                    ->on('location_countries')
-                    ->onDelete('cascade');
-        });
+                $table->foreign('country_id')->references('id')
+                        ->on($tablePrefix.'countries')
+                        ->onDelete('cascade');
+            });
     }
 
     /**
@@ -33,6 +36,6 @@ class WoodoocoderLaravelLocationRegion extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('location_regions');
+        Schema::dropIfExists(config('woodoocoder.location.table_prefix').'regions');
     }
 }

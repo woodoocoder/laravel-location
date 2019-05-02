@@ -12,26 +12,29 @@ class WoodoocoderLaravelLocationCity extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('location_cities', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('country_id')->unsigned()->nullable();
-            $table->integer('region_id')->unsigned()->nullable();
-            $table->string('name', 255)->nullable();
-            $table->string('en_name', 255);
-            $table->decimal('latitude', 10, 8)->nullable();
-            $table->decimal('longitude', 11, 8)->nullable();
-            $table->boolean('approved')->default(false);
-            $table->timestamps();
-            $table->softDeletes();
+        $tablePrefix = config('woodoocoder.location.table_prefix');
+        
+        Schema::create($tablePrefix.'cities',
+            function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('country_id')->unsigned()->nullable();
+                $table->integer('region_id')->unsigned()->nullable();
+                $table->string('name', 255)->nullable();
+                $table->string('en_name', 255);
+                $table->decimal('latitude', 10, 8)->nullable();
+                $table->decimal('longitude', 11, 8)->nullable();
+                $table->boolean('approved')->default(false);
+                $table->timestamps();
+                $table->softDeletes();
 
-            $table->foreign('country_id')->references('id')
-                    ->on('location_countries')
-                    ->onDelete('cascade');
+                $table->foreign('country_id')->references('id')
+                        ->on($tablePrefix.'countries')
+                        ->onDelete('cascade');
 
-            $table->foreign('region_id')->references('id')
-                    ->on('location_regions')
-                    ->onDelete('cascade');
-        });
+                $table->foreign('region_id')->references('id')
+                        ->on($tablePrefix.'regions')
+                        ->onDelete('cascade');
+            });
     }
 
     /**
@@ -40,6 +43,6 @@ class WoodoocoderLaravelLocationCity extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('location_cities');
+        Schema::dropIfExists(config('woodoocoder.location.table_prefix').'cities');
     }
 }
