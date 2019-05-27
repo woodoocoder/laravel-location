@@ -12,8 +12,12 @@ class LocationServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register() {
-        include __DIR__.'/routes/api.php';
-        $this->app->make('Woodoocoder\LaravelLocation\LocationController');
+        $useDefaultRounes = config('woodoocoder.location.use_default_routes');
+
+        if($useDefaultRounes) {
+            include __DIR__.'/routes/api.php';
+            $this->app->make('Woodoocoder\LaravelLocation\LocationController');
+        }
 
         $this->commands([
             \Woodoocoder\LaravelLocation\Console\InitCommand::class,

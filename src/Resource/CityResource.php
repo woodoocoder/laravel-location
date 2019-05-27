@@ -7,6 +7,19 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Woodoocoder\LaravelLocation\Resource\Short\CountryResource;
 use Woodoocoder\LaravelLocation\Resource\Short\RegionResource;
 
+/**
+ *   @OA\Schema(
+ *   schema="City",
+ *   type="object",
+ *   allOf={
+ *       @OA\Schema(
+ *           @OA\Property(property="id", format="integer", type="integer"),
+ *           @OA\Property(property="country", format="string", type="string"),
+ *           @OA\Property(property="region", format="string", type="string")
+ *       )
+ *   }
+ * )
+ */
 class CityResource extends JsonResource {
 
     /**

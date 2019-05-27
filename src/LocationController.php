@@ -16,6 +16,19 @@ use Woodoocoder\LaravelLocation\Resource\CityResource;
 
 class LocationController extends Controller {
 
+    /**
+     * @OA\Get(
+     *     path="/api/location/countries",
+     *     tags={"Location"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Countries List",
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *     )
+     * )
+     */
     public function countries(Request $request) {
         $q = $request->get('q');
         $model = Country::query();
