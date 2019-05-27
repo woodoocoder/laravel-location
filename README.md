@@ -5,18 +5,24 @@
 composer require woodoocoder/laravel-location
 ```
 
-
 ## Customization
 
 ```
 php artisan vendor:publish --tag location-config
-php artisan vendor:publish --tag location-seeds
 ```
 
 ## Initialization 
 
 ```
 php artisan locations:init
+```
+
+## Models 
+
+```
+Woodoocoder\LaravelLocation\Model\Country
+Woodoocoder\LaravelLocation\Model\Region
+Woodoocoder\LaravelLocation\Model\City
 ```
 
 ## Routes
