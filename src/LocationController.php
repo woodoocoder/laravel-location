@@ -16,10 +16,19 @@ use Woodoocoder\LaravelLocation\Resource\CityResource;
 
 class LocationController extends Controller {
 
+    
     /**
      * @OA\Get(
      *     path="/api/location/countries",
      *     tags={"Location"},
+     *     @OA\Parameter(
+     *         name="q",
+     *         in="query",
+     *         description="Search string",
+     *         @OA\Schema(
+     *           type="string",
+     *         ),
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Countries List",
@@ -44,10 +53,32 @@ class LocationController extends Controller {
         return CountryResource::collection($items);
     }
 
+    
+    /**
+     * @OA\Get(
+     *     path="/api/location/regions",
+     *     tags={"Location"},
+     *     @OA\Parameter(
+     *         name="q",
+     *         in="query",
+     *         description="Search string",
+     *         @OA\Schema(
+     *           type="string",
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Regions List",
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *     )
+     * )
+     */
     public function regions(Request $request, int $countryId=null) {
         $q = $request->get('q');
         $model = Region::query();
-
+        
         if(!empty($q)) {
             $model->where('name', 'LIKE', '%'.$q.'%');
             $model->orWhere('en_name', 'LIKE', '%'.$q.'%');
@@ -63,6 +94,28 @@ class LocationController extends Controller {
         return RegionResource::collection($items);
     }
 
+    
+    /**
+     * @OA\Get(
+     *     path="/api/location/cities",
+     *     tags={"Location"},
+     *     @OA\Parameter(
+     *         name="q",
+     *         in="query",
+     *         description="Search string",
+     *         @OA\Schema(
+     *           type="string",
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Cities List",
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *     )
+     * )
+     */
     public function cities(Request $request, int $countryId=null, int $regionId=null) {
         $q = $request->get('q');
         $model = City::query();
@@ -86,6 +139,5 @@ class LocationController extends Controller {
 
         return CityResource::collection($items);
     }
-    
     
 }
